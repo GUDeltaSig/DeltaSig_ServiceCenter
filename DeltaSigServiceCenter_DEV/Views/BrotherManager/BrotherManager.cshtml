@@ -1,0 +1,135 @@
+﻿@model DeltaSigServiceCenter_DEV.Models.Brother
+
+@{
+    ViewBag.Title = "BrotherManager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .sample {
+        width: 50%;
+    }
+    .largeFormEle {
+        max-width: 80%;
+    }
+
+    .smallFormEle {
+        max-width: 50%;
+    }
+
+    .numberFormEle {
+        max-width: 100%;
+    }
+
+    .topTitle {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        border-bottom: solid 1px #000000;
+        background-color: #005B3C;
+        max-width: 100%;
+    }
+
+    #manageBrotherArea {
+        max-width: 100%;
+        background-color: #005B3C;
+        padding-bottom: 2.5%;
+    }
+
+    .noSpaces {
+        padding: 0;
+    }
+    .manageEle {
+        color: #FFFFFF;
+    }
+</style>
+
+<!--Top Title-->
+<div class="topTitle">
+    <h2 id="topTitle" style="text-align: center; color: #FFFFFF;">- Brother Manager -</h2>
+    <h4 id="topTitle2" style="text-align: center; color: #FFFFFF;">Add New Brothers and Manage Existing Ones</h4>
+  
+</div>
+
+<!--Add New Brother Area-->
+<div class="container" style="padding-bottom: 2.5%;">
+    <div style="padding-top: 2.5%; padding-bottom: 2.5%;">
+        <h3 id="addNewBroDesc" class="text-center" style="color: #005B3C;"><b>Add New Brother</b></h3>
+    </div>
+    <div class="row col-lg-8">
+        @using (Html.BeginForm("AddNewBrother", "BrotherManager", FormMethod.Post, new { @class = "form", role = "form" }))
+        {
+            <div>
+                <label>Full Name</label>
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control largeFormEle" })
+            </div>
+            <br />
+            <div>
+                <label>Class</label>
+                @Html.TextBoxFor(m => m.ClassStanding, new { @class = "form-control smallFormEle" })
+            </div>
+            <br />
+            <div>
+                <label>Email Address</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control largeFormEle" })
+            </div>
+            <br />
+            <div>
+                <label>Phone Number</label>
+                @Html.TextBoxFor(m => m.PhoneNum, new { @class = "form-control smallFormEle" })
+            </div>
+            <br />
+            <div class="col-xs-8">
+                <input id="newBroSubmitter" type="submit" value="Create New Brother" class="btn col-lg-4 col-lg-offset-3" style="background-color: #005B3C; color: #FFFFFF"/>
+            </div>
+        }
+    </div>
+    <div class="row col-lg-4">
+        <p style="font-size: 150%; text-align: center; color: #005B3C; padding-bottom: 5%;">- To Add a New Brother -</p>       
+        <ul>
+            <li style="font-size: 150%; color: #005B3C;">Enter the Brother's full name</li>
+            <li style="font-size: 150%; color: #005B3C;">Class</li>
+            <li style="font-size: 150%; color: #005B3C;">School designated email address</li>
+            <li style="font-size: 150%; color: #005B3C;">Phone Number (Mobile or Home)</li>
+        </ul>
+        <p style="font-size: 150%; text-align: center; color: #005B3C; padding-top: 5%;">- &Delta;&Sigma;&Phi; -</p>
+    </div>        
+</div>
+
+<!--Manage Brother-->
+<div id="manageBrotherArea">
+    <div class="container">
+        <div class="row">
+            <div style="padding-top: 2.5%; padding-bottom: 2.5%;">
+                <h3 style="text-align: center; padding-bottom: 1.25%;" id="manageBroDesc" class="manageEle"><b>Manage Brother</b></h3>
+                <div style="text-align: center;">
+                    <h5 style="color: #FFFFFF;">Edit an existing brother's information</h5>
+                    <h5 style="color: #FFFFFF;">OR</h5>
+                    <h5 style="color: #FFFFFF;">Delete an existing brother</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="editArea" class="row col-xs-12">
+            <h4 style="color: #FFFFFF;"><b>Edit Existing Brother</b></h4>
+            <br />
+            <div id="formSide" class="col-xs-4">
+                <div style="padding-bottom: 5%;">
+                    <label style="color: #FFFFFF;">Enter Brother ID Number</label>
+                    @Html.TextBoxFor(m => m.BrotherID, new { @class = "form-control numberFormEle" })
+                </div>
+                <span>               
+                    <input type="submit" value="Edit Brother" id="editBroSubmitter" class="btn btn-success col-xs-4"/>
+                    &nbsp;
+                    <a href="#">Don't know Brother ID Number?</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    function goToServer() {
+        $("myText").val('@Html.AttributeEncode(Url.Action("hello", "BrotherManager"))');
+    }
+</script>

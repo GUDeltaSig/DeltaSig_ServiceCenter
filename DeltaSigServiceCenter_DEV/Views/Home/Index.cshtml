@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    .mainContent {
+        width: 100%;
+        background-color: #005B3C;
+    }
+
+    #topContent {
+        width: 100%;
+        background-color: #F8F8FF;
+        padding-top: 4%;
+        padding-bottom: 4%;
+    }
+
+    #topDescription {
+
+    }
+</style>
+
+<section id="topContent">
+    <h2 id="topDescription" style="color:#005B3C" class="text-center"> - &Delta;&Sigma;&Phi; - </h2>
+    <h2 id="topDescription" style="color:#005B3C" class="text-center"> - Gamma Rho - </h2>
+    <h2 id="topDescription" style="color:#005B3C" class="text-center"> - Service Hours Standings per Brother - </h2>
+</section>
+
+
+<section id="mainContent" class="mainContent">
+    <div class="container">
+        <div class="row">
+            <h3 style="text-align:center; color:#F8F8FF">CURRENT STANDINGS</h3>
+            <table id="mainDataTable" class="table" style="color:#F8F8FF">
+                <thead>
+                    <tr>
+                        <th>Brother ID</th>
+                        <th>Name</th>
+                        <th>Number of Hours</th>
+                        <th>Class Standing</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody id="dataHolder">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        getMainTableData();
+    });
+
+    var student = new Object();
+    student.name = "Grant";
+    student.class = "Junior";
+    student.sport = "XC";
+
+    function getMainTableData() {
+        $.ajax({
+            type: "GET",
+            url: "/Home/ShowBrothersStandings",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                fillTable(data);
+            },
+            error: function () {
+                alert("There was an error trying to connect to the server");
+            }
+        });
+    }
+
+    function fillTable(rawData) {
+        var tableBodyCont = document.getElementById("dataHolder");
+        var tableString = '';
+
+        for (var i = 0; i < rawData.length; i++) {
+            tableString += '<tr>';
+            tableString += '<td>' + rawData[i].BrotherID + '</td>'
+                             + '<td>' + rawData[i].FullName + '</td>'
+                             + '<td>' + rawData[i].NumOfHours + '</td>'
+                             + '<td>' + rawData[i].ClassStanding + '</td>'
+                             + '<td>' + rawData[i].Email + '</td>'
+                             + '<td>' + rawData[i].PhoneNum + '</td>';
+            tableString += '</tr>';
+        }
+
+        console.log(tableString);
+        tableBodyCont.innerHTML = tableString;
+    }
+
+</script>

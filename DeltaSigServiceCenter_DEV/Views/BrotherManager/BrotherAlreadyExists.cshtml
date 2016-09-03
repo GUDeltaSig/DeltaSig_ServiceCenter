@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "BrotherAlreadyExists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .topContent {
+        text-align: center;
+        padding-bottom: 2.5%;
+        color: darkorange;
+    }
+
+    .mainContent {
+        text-align: center;
+    }
+
+    .bottomLinks {
+        padding-top: 5%;
+        padding-bottom: 5%;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <h2 class="topContent"><u>Brother Already Exists!</u></h2>
+        <h4 class="mainContent">The user you entered already exists.</h4>
+        <h4 class="mainContent">Try to enter a brother again, or return home.</h4>
+        <div class="bottomLinks">
+            <a href="~/">RETURN HOME</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="~/BrotherManager/BrotherManager">TRY AGAIN</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "BrotherAdditionFailed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .errorList {
+        padding-top: 2.5%;
+        padding-bottom: 2.5%;
+    }
+</style>
+
+<div class="container">
+    <div class="row col-xs-12">
+        <h2 style="text-align: center;">Brother Addition Failed!</h2>
+        <h4 style="text-align: center;">Here are some posssible reasons for the failure.</h4>
+        <ol class="errorList col-xs-8 pull-right">
+            <li>Not all of the fields were filled out.</li>
+            <li>The email address associated with the brother is in the incorrect form</li>
+            <ul>
+                <li>Must be in the form of ("lastname001&#64;knights.gannon.edu")</li>
+            </ul>
+            <li>The phone number associated with the brother is in the incorrect form</li>
+            <ul>
+                <li>Must be in the form of ("XXX-XXX-XXXX")</li>
+            </ul>
+        </ol>
+    </div>
+
+    <div class="row col-xs-12" style="text-align: center;">
+        <a href="~/">RETURN HOME</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="~/BrotherManager/BrotherManager">TRY AGAIN</a> 
+    </div>
+</div>
+
